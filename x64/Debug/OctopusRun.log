@@ -1,0 +1,4 @@
+﻿  GameSystem.cpp
+D:\Code\C++\OctopusRun\GameSystem.cpp(111,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Code\C++\OctopusRun\GameSystem.cpp(116,79): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  OctopusRun.vcxproj -> D:\Code\C++\OctopusRun\x64\Debug\OctopusRun.exe
