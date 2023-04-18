@@ -8,8 +8,8 @@ Object::Object(const char* path, SDL_Rect Nsrc)
 	ObjTexture = TextureManager::loadTexture(path);
 }
 
-Object::Object(std::string line) {
-	ObjTexture = TextureManager::textTexture(line);
+Object::Object(std::string line, SDL_Color color) {
+	ObjTexture = TextureManager::textTexture(line, color);
 }
 
 void Object::Render()

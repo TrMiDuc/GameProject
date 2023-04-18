@@ -19,8 +19,8 @@ Object* ground, * background, * G_point;
 Player* player;
 Obstacle* obstacle;
 
-Mix_Chunk* goUpSound;
-Mix_Chunk* GetOverSound;
+Mix_Chunk* goUpSound, *GetOverSound, * colliSound;
+
 
 Animation* playerAni;
 
@@ -68,7 +68,7 @@ void GameSystem::Init(const char* name, int width, int height, bool fullscreen)
 		std::deque<std::string> Ob = {
 			"assets/Obstacles/TestOb1.png",
 			"assets/Obstacles/TestOb2.png",
-			"assets/Obstacles/TestOb3.png"
+			"assets/Obstacles/Obstacles3.png"
 		};
 		obstacle = new Obstacle(Ob);
 
@@ -87,6 +87,7 @@ void GameSystem::Init(const char* name, int width, int height, bool fullscreen)
 		//sound effect
 		goUpSound = Mix_LoadWAV("sounds/octopus_swim.wav");
 		GetOverSound = Mix_LoadWAV("sounds/ObstacleOver.wav");
+		colliSound = Mix_LoadWAV("sounds/gethit.ogg");
 
 		isRunning = true;
 	}
@@ -125,10 +126,20 @@ void GameSystem::update()
 	//Collision
 	SDL_Rect playerRe = player->getObjectLocation(), groundRe = { 0, GAME_HEIGHT * 15/16, GAME_WIDTH, GAME_HEIGHT / 16 };
 	SDL_Rect roof = { 0,0,GAME_WIDTH,1 };
-	if (SDL_HasIntersection(&playerRe, &roof)) isGameOver = true;
-	if (SDL_HasIntersection(&playerRe, &groundRe)) isGameOver = true;
+
+	if (SDL_HasIntersection(&playerRe, &roof)) {
+		Mix_PlayChannel(3, colliSound, 1);
+		isGameOver = true;
+	}
+	if (SDL_HasIntersection(&playerRe, &groundRe)) {
+		Mix_PlayChannel(3, colliSound, 1);
+		isGameOver = true;
+	}
 	for (int i = 0; i < max_Ob; i++) {
-		if (Rect_colli(playerRe, save[i])) isGameOver = true;
+		if (Rect_colli(playerRe, save[i])) {
+			Mix_PlayChannel(3, colliSound, 1);
+			isGameOver = true;
+		}
 	}
 
 	//point get
@@ -169,7 +180,7 @@ void GameSystem::Handle_event()
 			Mix_HaltChannel(0);
 			Mix_PlayChannel(0, goUpSound, 0);
 		}
-		if (isGameOver and KeyboardState[SDL_SCANCODE_RETURN]) play_again();
+		if (KeyboardState[SDL_SCANCODE_LSHIFT] and KeyboardState[SDL_SCANCODE_RETURN]) play_again();
 		break;
 	}
 }

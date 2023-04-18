@@ -1,1 +1,2 @@
 D:\Code\C++\OctopusRun\x64\Debug\OctopusRun.exe
+C:\Users\LNV\Desktop\GameProject\x64\Debug\OctopusRun.exe

@@ -15,7 +15,7 @@ class Object
 {
 public:
 	Object(const char* path, SDL_Rect Nsrc = {0,0,0,0});
-	Object(std::string line);
+	Object(std::string line, SDL_Color color = {255,255,0});
 	~Object() {};
 
 	virtual void Render();
