@@ -23,22 +23,25 @@ int main(int argc, char * argv[]) {
 				menuStart = new Menu(
 					{
 					{0,"New Game"},
-					{1,"Exit"},
-					{2,"Tutorial"}
+					{1,"Tutorial"},
+					{2,"Exit"}
 					}
 				);
 			}
-
 			int a = menuStart->ShowMenu("fonts/DS-DIGI.TTF");
 
 			switch (a) {
 			case 0:
 				game->inChange(0, 1, 0);
-				break;
-			case 1:
-				game->inChange(0, 0, 0);
+				if (menuStart) {
+					delete menuStart;
+					menuStart = nullptr;
+				}
 				break;
 			case 2:
+				game->inChange(0, 0, 0);
+				break;
+			case 1:
 				break;
 			default:
 				break;
@@ -46,11 +49,9 @@ int main(int argc, char * argv[]) {
 		}
 
 		if (!game->GameOver() and !game->Menu()) {
-
 			game->Handle_event();
 			game->update();
 			game->Render();
-
 		}
 
 		if (game->GameOver()) {
@@ -73,6 +74,10 @@ int main(int argc, char * argv[]) {
 			case 0:
 				game->play_again();
 				game->inChange(0, 1, 0);
+				if (menuGameOver) {
+					delete menuGameOver;
+					menuGameOver = nullptr;
+				}
 				break;
 			case 1:
 				game->inChange(0, 0, 0);

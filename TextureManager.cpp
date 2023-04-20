@@ -14,11 +14,10 @@ SDL_Texture* TextureManager::loadTexture(std::string file)
 		printf("Surface could not be created! SDL Error: %s\n", SDL_GetError());
 		exit(1);
 	}
-	SDL_SetColorKey(TemSurf, true, SDL_MapRGB(TemSurf->format, 20, 45, 76));
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(GameSystem::renderer, TemSurf);
 	SDL_FreeSurface(TemSurf);
 
-	if (texture == NULL) {
+	if (!texture) {
 		printf("Texture could not be created! SDL Error: %s\n", SDL_GetError());
 		exit(1);
 	}
@@ -31,10 +30,9 @@ SDL_Texture* TextureManager::textTexture(std::string sentence, SDL_Color color)
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(GameSystem::renderer, TemSurf);
 	SDL_FreeSurface(TemSurf);
 
-	if (texture == NULL) {
+	if (!texture) {
 		printf("Texture could not be created! SDL Error: %s\n", SDL_GetError());
 		exit(1);
 	}
-
 	return texture;
 }

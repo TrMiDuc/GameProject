@@ -18,10 +18,10 @@ public:
 	Object(std::string line, SDL_Color color = {255,255,0});
 	~Object() {};
 
-	virtual void Render();
+	virtual void Render(); //render object
 	virtual void setObjTex(SDL_Texture* tex) { ObjTexture = tex; }
+	
 	virtual SDL_Rect getObjectLocation() { return des; }
-
 	virtual void setDesRect(SDL_Rect a) { des = a; }
 
 protected:

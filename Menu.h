@@ -14,16 +14,17 @@
 class Menu {
 public:
 	Menu(std::map<int, std::string> Option, std::string name = "Octopus Run");
-	~Menu() {};
+	~Menu();
 
 	int ShowMenu(const char* file);
+
 	void changeSentence(const char* sentence) { MenuSentence = sentence; }
 	void printOnMenu();
-	void setMenuFont(const char* file);
 	void setMenuBackground(SDL_Texture* Background) { MenuBackground = Background; }
 
 protected:
 	std::map <int, std::string> Setting;
+
 	std::vector<SDL_Texture*> TextTexture;
 	std::vector<SDL_Rect> SettingRect;
 
@@ -33,7 +34,5 @@ protected:
 
 	SDL_Texture* MenuBackground;
 	SDL_Texture* NameTex;
-
-	TTF_Font* font;
 };
 

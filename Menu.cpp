@@ -20,12 +20,10 @@ Menu::Menu(std::map<int, std::string> Option, std::string name)
     menuEffect2 = Mix_LoadWAV("sounds/menuEffect2.wav");
 }
 
+Menu::~Menu(){}
+
 int Menu::ShowMenu(const char* file)
 {
-    static int cnt = 0;
-    cnt++;
-
-    setMenuFont(file);
     //setup button texture
     for (auto i : Setting) {
         TextTexture.push_back(TextureManager::textTexture(i.second));
@@ -33,41 +31,9 @@ int Menu::ShowMenu(const char* file)
 
     //setup button rect
     for (int i = 0; i < Setting.size(); i++) {
-        SettingRect.push_back({ GAME_WIDTH/2 - 60 ,GAME_HEIGHT - ((int)Setting.size()- i) * 70,120,50 });
+        SettingRect.push_back({ GAME_WIDTH / 2 - 60 ,GAME_HEIGHT - ((int)Setting.size() - i) * 70,120,50 });
     }
-
-    SDL_Event event;
-    SDL_PollEvent(&event);
-
-    switch (event.type) {
-    case SDL_QUIT:
-        exit(0);
-        break;
-    case SDL_MOUSEMOTION:
-        for (int i = 0; i < Setting.size(); i++) {
-            std::string tmp = Setting.at(i);
-            if (MouseInRect(SettingRect[i])) {
-                Mix_Volume(1, 16);
-                if (cnt%3 == 0) Mix_PlayChannel(1, menuEffect1, 1);
-                TextTexture[i] = TextureManager::textTexture(tmp, { 255,0,0 });
-            }
-            else TextTexture[i] = TextureManager::textTexture(tmp);
-        }
-        break;
-    case SDL_MOUSEBUTTONDOWN:
-        for (int i = 0; i < Setting.size(); i++) {
-            if (MouseInRect(SettingRect[i]) and SDL_MOUSEBUTTONDOWN) {
-                Mix_Volume(2, 16);
-                if(cnt % 3 == 0) Mix_PlayChannel(2, menuEffect2, 1);
-                return i;
-            }
-        }
-        break;
-    }
-
     SDL_RenderClear(GameSystem::renderer);
-    
-
 
     SDL_RenderCopy(GameSystem::renderer, MenuBackground, NULL, NULL);
     SDL_RenderCopy(GameSystem::renderer, NameTex, NULL, &GameName);
@@ -79,6 +45,39 @@ int Menu::ShowMenu(const char* file)
     }
     
     SDL_RenderPresent(GameSystem::renderer);
+
+    SDL_Event event;
+    SDL_PollEvent(&event);
+
+    switch (event.type) {
+    case SDL_QUIT:
+        exit(0);
+        break;
+    case SDL_MOUSEMOTION:
+
+        for (int i = 0; i < Setting.size(); i++) {
+            std::string tmp = Setting.at(i);
+            if (MouseInRect(SettingRect[i])) {
+                Mix_Volume(1, 16);
+                Mix_PlayChannel(1, menuEffect1, 0);
+                TextTexture[i] = TextureManager::textTexture(tmp, { 255,0,0 });
+            }
+            else {
+                TextTexture[i] = TextureManager::textTexture(tmp);
+            }
+        }
+        break;
+    case SDL_MOUSEBUTTONDOWN:
+        for (int i = 0; i < Setting.size(); i++) {
+            if (MouseInRect(SettingRect[i]) and SDL_MOUSEBUTTONDOWN) {
+                Mix_Volume(2, 16);
+                Mix_PlayChannel(2, menuEffect2, 0);
+                return i;
+            }
+        }
+        break;
+    }
+
     return 4;
 }
 
@@ -92,9 +91,3 @@ void Menu::printOnMenu()
         SDL_RenderCopy(GameSystem::renderer, tmpTex, NULL, &tmp);
     }
 }
-
-void Menu::setMenuFont(const char* file)
-{
-    font = TTF_OpenFont(file, 40);
-}
-
