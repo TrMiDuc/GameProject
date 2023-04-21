@@ -23,8 +23,7 @@ int main(int argc, char * argv[]) {
 				menuStart = new Menu(
 					{
 					{0,"New Game"},
-					{1,"Tutorial"},
-					{2,"Exit"}
+					{1,"Exit"}
 					}
 				);
 			}
@@ -38,12 +37,8 @@ int main(int argc, char * argv[]) {
 					menuStart = nullptr;
 				}
 				break;
-			case 2:
-				game->inChange(0, 0, 0);
-				break;
 			case 1:
-				break;
-			default:
+				game->inChange(0, 0, 0);
 				break;
 			}
 		}

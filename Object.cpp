@@ -22,6 +22,11 @@ void Object::Render()
 	}
 }
 
+void Object::setObjTex(SDL_Texture* tex)
+{
+	ObjTexture = tex;
+}
+
 Player::Player(std::string line, SDL_Rect Nsrc): Object(line.c_str(), Nsrc)
 {
 	ObjTexture = TextureManager::loadTexture(line.c_str());
@@ -68,29 +73,24 @@ void Obstacle::TripleRender(Triple_Rect &rect)
 
 Triple_Rect Obstacle::RandomRect(int size, int distan, int index)
 {
-	
-
 	//on
 	rect.on.h = 30 + rand() % GAME_HEIGHT * 1 / 10;
 	rect.on.y = 0;
+	rect.on.x = GAME_WIDTH + index * distan;
+	rect.on.w = 60;
 
 	int distance = 90 + rand() % 30;
-	//mid
+
 	rect.mid.y = rect.on.h + distance;
 	rect.mid.h = rect.mid.y + (30 + rand() % GAME_HEIGHT * 1 / 10);
+	rect.mid.x = GAME_WIDTH + index * distan;
+	rect.mid.w = 60;
 
 	distance = 90 + rand() % 30;
-	//under
+
 	rect.under.y = rect.mid.y + rect.mid.h + distance;
 	rect.under.h = GAME_HEIGHT - rect.under.y;
-
-
-	rect.on.x = GAME_WIDTH + index * distan;
-	rect.mid.x = GAME_WIDTH + index * distan;
 	rect.under.x = GAME_WIDTH + index * distan;
-
-	rect.on.w = 60;
-	rect.mid.w = 60;
 	rect.under.w = 60;
 
 	return rect;

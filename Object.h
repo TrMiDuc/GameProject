@@ -19,7 +19,7 @@ public:
 	~Object() {};
 
 	virtual void Render(); //render object
-	virtual void setObjTex(SDL_Texture* tex) { ObjTexture = tex; }
+	virtual void setObjTex(SDL_Texture* tex);
 	
 	virtual SDL_Rect getObjectLocation() { return des; }
 	virtual void setDesRect(SDL_Rect a) { des = a; }
@@ -44,8 +44,8 @@ public:
 	void UnMove() { isStop = true; }
 
 private:
-	float DownSpeed;
-	const float UpSpeed = 40;
+	int DownSpeed;
+	const int UpSpeed = 40;
 
 	int timeT = 0;
 
@@ -64,6 +64,7 @@ public:
 	bool Stop() { return isStop; }
 	void Move(bool a) { isStop = a; }
 private:
+
 	int speed = 1;
 	Triple_Rect rect;
 	SDL_Texture* ObstacleTex[3];

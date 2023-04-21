@@ -1,15 +1,6 @@
-﻿  Animation.cpp
-  GameSystem.cpp
-C:\Users\LNV\Desktop\GameProject\GameSystem.cpp(121,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\LNV\Desktop\GameProject\GameSystem.cpp(126,79): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  main.cpp
+﻿  main.cpp
 C:\Users\LNV\Desktop\GameProject\main.cpp(14,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\LNV\Desktop\GameProject\main.cpp(92,25): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
-  Menu.cpp
-  Object.cpp
-C:\Users\LNV\Desktop\GameProject\Object.cpp(35,11): warning C4244: '-=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\LNV\Desktop\GameProject\Object.cpp(42,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\LNV\Desktop\GameProject\Object.cpp(43,12): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-  TextureManager.cpp
-  Generating Code...
+C:\Users\LNV\Desktop\GameProject\main.cpp(87,25): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
+Animation.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification
   OctopusRun.vcxproj -> C:\Users\LNV\Desktop\GameProject\x64\Debug\OctopusRun.exe

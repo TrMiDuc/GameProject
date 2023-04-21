@@ -155,6 +155,8 @@ void GameSystem::update()
 		point++;
 		TakeHigher();
 	}
+
+	delete G_point;   //release previous point
 	G_point = new Object(std::to_string(getScore()));
 	G_point->setDesRect({ GAME_WIDTH / 2 - 25,50,50,70 });
 
@@ -212,7 +214,6 @@ void GameSystem::Render()
 
 void GameSystem::play_again()
 {
-	isGameOver = false;
 	point = 0;
 	save.clear();
 
@@ -226,6 +227,8 @@ void GameSystem::play_again()
 	ground->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed1.png"));
 
 	SDL_RenderClear(renderer);
+
+	isGameOver = false;
 }
 
 void GameSystem::clear()
