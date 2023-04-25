@@ -1,6 +1,8 @@
-﻿  GameSystem.cpp
-C:\Users\LNV\Desktop\GameProject\GameSystem.cpp(121,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\LNV\Desktop\GameProject\GameSystem.cpp(126,79): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+﻿  Animation.cpp
+  GameSystem.cpp
+C:\Users\LNV\Desktop\GameProject\GameSystem.cpp(133,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\LNV\Desktop\GameProject\GameSystem.cpp(138,79): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
 Animation.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification
   OctopusRun.vcxproj -> C:\Users\LNV\Desktop\GameProject\x64\Debug\OctopusRun.exe

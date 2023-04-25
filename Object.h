@@ -20,6 +20,7 @@ public:
 
 	virtual void Render(); //render object
 	virtual void setObjTex(SDL_Texture* tex);
+	virtual void MoveBack() { des.x--; };
 	
 	virtual SDL_Rect getObjectLocation() { return des; }
 	virtual void setDesRect(SDL_Rect a) { des = a; }

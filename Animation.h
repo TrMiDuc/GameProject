@@ -11,7 +11,7 @@ public:
 
 private:
 	int cnt, NumberOfImg;
-	const int FrameRate = 4;
+	const int FrameRate = 5;
 	std::string FilePath;
 
 	std::vector<SDL_Texture*> texture;

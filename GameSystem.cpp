@@ -15,7 +15,7 @@ Mix_Music* GameSystem::music;
 
 std::deque<Triple_Rect> save;
 
-Object* ground, * background, * G_point;
+Object* ground1, *ground2, * background, * G_point;
 Player* player;
 Obstacle* obstacle;
 
@@ -59,8 +59,10 @@ void GameSystem::Init(const char* name, int width, int height, bool fullscreen)
 		}
 
 		//init Object ground
-		ground = new Object("assets/ground/seabed1.png",{0,0,0,0});
-		ground->setDesRect({ 0, GAME_HEIGHT*7/8, GAME_WIDTH, GAME_HEIGHT/8 });
+		ground1 = new Object("assets/ground/seabed1.png",{0,0,0,0});
+		ground1->setDesRect({ 0, GAME_HEIGHT*7/8, GAME_WIDTH, GAME_HEIGHT/8 });
+		ground2 = new Object("assets/ground/seabed1.png", { 0,0,0,0 });
+		ground2->setDesRect({ GAME_WIDTH, GAME_HEIGHT * 7 / 8, GAME_WIDTH, GAME_HEIGHT / 8 });
 
 		//init Object background
 		background = new Object("assets/background/background4.png",{0,0,0,0});
@@ -105,7 +107,8 @@ void GameSystem::update()
 	static bool IMGload = true;
 	if (point == 40 and IMGload) {
 		background->setObjTex(IMG_LoadTexture(renderer, "assets/background/background3.png"));
-		ground->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed2.png"));
+		ground1->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed2.png"));
+		ground2->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed2.png"));
 		IMGload = false;
 	}
 
@@ -115,6 +118,17 @@ void GameSystem::update()
 	}
 	//gravity
 	player->goDown();
+
+
+	//ground movement
+	ground1->MoveBack();
+	ground2->MoveBack();
+	if (ground1->getObjectLocation().x + ground1->getObjectLocation().w <= 0) {
+		ground1->setDesRect({ GAME_WIDTH, GAME_HEIGHT * 7 / 8, GAME_WIDTH, GAME_HEIGHT / 8 });
+	}
+	if (ground2->getObjectLocation().x + ground2->getObjectLocation().w <= 0) {
+		ground2->setDesRect({ GAME_WIDTH, GAME_HEIGHT * 7 / 8, GAME_WIDTH, GAME_HEIGHT / 8 });
+	}
 
 	//Setup Obstacles to render
 	while (save.size() < max_Ob) {
@@ -195,8 +209,7 @@ void GameSystem::Render()
 {
 	SDL_RenderClear(renderer);
 
-	//Render background
-	background->Render();
+	background->Render(); //Render background
 	
 	//Render Obstacles
 	for (int i = 0; i < max_Ob; i++) {
@@ -205,7 +218,9 @@ void GameSystem::Render()
 
 	G_point->Render(); 	//Render point
 
-	ground->Render(); 	//Render ground
+	//Render ground
+	ground1->Render(); 	
+	ground2->Render();
 
 	player->Render(); 	//Render player
 
@@ -224,7 +239,8 @@ void GameSystem::play_again()
 	player->UnMove();
 
 	background->setObjTex(IMG_LoadTexture(renderer, "assets/background/background4.png"));
-	ground->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed1.png"));
+	ground1->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed1.png"));
+	ground2->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed1.png"));
 
 	SDL_RenderClear(renderer);
 

@@ -50,6 +50,7 @@ int main(int argc, char * argv[]) {
 		}
 
 		if (game->GameOver()) {
+			Mix_HaltMusic();
 			if (!menuGameOver) {
 				menuGameOver = new Menu(
 					{
