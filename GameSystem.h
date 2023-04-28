@@ -8,6 +8,7 @@
 #include<string>
 #include<iostream>
 #include<ctime>
+#include<fstream>
 
 #define GAME_HEIGHT 640
 #define GAME_WIDTH 480
@@ -46,12 +47,11 @@ private:
 	bool isMenu = true;
 
 	SDL_Window* window;
-	
+
+	std::fstream savePoint;
 	int point = 0;
 	int highscore = 0;
-	void TakeHigher() {
-		if (point > highscore) highscore = point;
-	}
+	void TakeHigher();  //change highscore when point is higher than previous highscore, save the highscore to "save.txt"
 
 	//some default rect
 	SDL_Rect roof = { 0,0,GAME_WIDTH,1 }, groundRe = { 0, GAME_HEIGHT * 15 / 16, GAME_WIDTH, GAME_HEIGHT / 16 };

@@ -94,6 +94,11 @@ void GameSystem::Init(const char* name, int width, int height, bool fullscreen)
 		GetOverSound = Mix_LoadWAV("sounds/ObstacleOver.wav");
 		colliSound = Mix_LoadWAV("sounds/gethit.ogg");
 
+		//get previous highscore
+		savePoint.open("save.txt", std::ios::in);
+		savePoint >> highscore;
+		savePoint.close();
+
 		//running game
 		isRunning = true;
 	}
@@ -263,4 +268,18 @@ void GameSystem::inChange(bool Menu, bool Running, bool GameOver)
 	isMenu = Menu;
 	isRunning = Running;
 	isGameOver = GameOver;
+}
+
+void GameSystem::TakeHigher()
+{
+	if (point > highscore) {
+		highscore = point;
+
+		savePoint.open("save.txt", std::ios::out | std::ios::trunc);
+		if (savePoint.is_open()) {
+			savePoint << highscore;
+			savePoint.close();
+		}
+		else std::cerr<<savePoint.rdstate()<<std::endl;
+	}
 }
