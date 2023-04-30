@@ -69,7 +69,7 @@ int Menu::ShowMenu(const char* file)
         break;
     case SDL_MOUSEBUTTONDOWN:
         for (int i = 0; i < Setting.size(); i++) {
-            if (MouseInRect(SettingRect[i]) and SDL_MOUSEBUTTONDOWN) {
+            if (MouseInRect(SettingRect[i])) {
                 Mix_Volume(2, 16);
                 Mix_PlayChannel(2, menuEffect2, 0);
                 return i;
