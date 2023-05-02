@@ -3,6 +3,9 @@ Game được tạo bằng thư viện SDL.
 
 Octopus Run là một game đơn giản được lấy ý tưởng từ trò chơi Flappy Bird của tác giả Nguyễn Hà Đông. Trong trò chơi này, người chơi sẽ điều khiển một chú bạch tuộc bơi vượt qua những chướng ngại vật trên đường đi.
 
+## Lý do lựa chọn game.
+Dạng game vượt chướng ngại vật này có cách chơi đơn giản, tuy vậy lại có sức thu hút người chơi cao. Vì vậy, như là tựa game đầu tay, em lựa chọn Flappy Bird như là định hướng cho trò chơi của mình. 
+
 ## Cách chơi.
 1. Điều khiển chú bạch tuộc vượt qua các chướng ngại vật.
 2. Tránh các chướng ngại vật bằng cách vượt qua các khoảng trống.
@@ -23,6 +26,7 @@ Tăng dần độ khó của trò chơi dựa theo số điểm của người c
 - Tăng tốc độ của các vật cản.
 - Giảm khoảng cách giữa các vật cản.
 - Khiến cho các vật cản di chuyển liên tục khiến người phải lựa chọn khoảng trống thích hợp để né tránh.
+Thêm vào nhiều hình ảnh hơn, tăng độ sinh động cho trò chơi.
 
 ## Tài liệu tham khảo trong quá trình làm game.
 - Lazyfoo.net.
