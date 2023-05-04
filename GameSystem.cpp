@@ -110,7 +110,7 @@ void GameSystem::update()
 
 	//Change the game background and ground when reach the set point
 	static bool IMGload = true;
-	if (point == 3 and IMGload) {
+	if (point == 40 and IMGload) {
 		background->setObjTex(IMG_LoadTexture(renderer, "assets/background/background3.png"));
 		ground1->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed2.png"));
 		ground2->setObjTex(IMG_LoadTexture(renderer, "assets/ground/seabed2.png"));

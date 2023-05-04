@@ -24,7 +24,9 @@ int main(int argc, char * argv[]) {
 					{
 					{0,"New Game"},
 					{1,"Exit"}
-					}
+					},
+					"assets/background/background1.png",
+					"OCTOPUS RUN"
 				);
 			}
 			int a = menuStart->ShowMenu("fonts/DS-DIGI.TTF");
@@ -57,7 +59,8 @@ int main(int argc, char * argv[]) {
 					{0,"Play Again"},
 					{1,"Exit"},
 					},
-					"GAME OVER!"
+					"assets/background/background2.png",
+					"GAME OVER"
 				);
 				
 			}

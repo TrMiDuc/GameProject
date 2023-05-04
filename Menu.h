@@ -13,7 +13,7 @@
 
 class Menu {
 public:
-	Menu(std::map<int, std::string> Option, std::string name = "Octopus Run");
+	Menu(std::map<int, std::string> Option, const char* path, std::string name);
 	~Menu();
 
 	int ShowMenu(const char* file);
@@ -30,7 +30,7 @@ protected:
 
 	std::string MenuSentence;
 
-	SDL_Rect GameName = {GAME_WIDTH/4,50,GAME_WIDTH/2,150};
+	SDL_Rect GameName = {GAME_WIDTH/4,50,GAME_WIDTH/2,120};
 
 	SDL_Texture* MenuBackground;
 	SDL_Texture* NameTex;

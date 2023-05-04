@@ -11,11 +11,11 @@ bool MouseInRect(SDL_Rect& a) {
     return false;
 }
 
-Menu::Menu(std::map<int, std::string> Option, std::string name)
+Menu::Menu(std::map<int, std::string> Option, const char* path, std::string name)
 {
     Setting = Option;
-    MenuBackground = TextureManager::loadTexture("assets/background/background1.png");
-    NameTex = TextureManager::textTexture(name, {0,0,0});
+    MenuBackground = TextureManager::loadTexture(path);
+    NameTex = TextureManager::textTexture(name, {10,10,10});
     menuEffect1 = Mix_LoadWAV("sounds/menuEffect1.wav");
     menuEffect2 = Mix_LoadWAV("sounds/menuEffect2.wav");
 }
@@ -87,7 +87,7 @@ void Menu::printOnMenu()
 {
     if (MenuSentence != "") {
         SDL_Texture* tmpTex = TextureManager::textTexture(MenuSentence, { 255,255,0 });
-        SDL_Rect tmp = { GAME_WIDTH / 2 - 80, GAME_HEIGHT - ((int)Setting.size()+1) * 90,160,80 };
+        SDL_Rect tmp = { GAME_WIDTH / 2 - 100, GAME_HEIGHT - ((int)Setting.size()+1) * 90,200,100 };
         SDL_RenderCopy(GameSystem::renderer, tmpTex, NULL, &tmp);
     }
 }
